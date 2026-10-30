@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import fachada from '../assets/fachada.jpg';
+import { waLink } from '../data/site';
+---
+<Base title="Sobre a Brocudos Barbearia | Tremembé, São Paulo" description="Conheça a Brocudos Barbearia: ambiente descontraído, corte e barba na zona norte de São Paulo." path="/sobre">
+  <section><div class="wrap grid two">
+    <div><p class="eyebrow">Sobre</p><h1>Barbearia de amigos, para amigos</h1>
+      <p>Brocudos é o jeito carinhoso de chamar quem usa barba. O nome já diz o clima: atendimento sem frescura, bom humor e serviço bem feito.</p>
+      <p>Estamos na Av. Cel. Sezefredo Fagundes, 2166, no Tremembé, e abrimos todos os dias da semana.</p>
+      <div class="cta"><a class="btn" href={waLink()} rel="noopener noreferrer">Chamar no WhatsApp</a></div></div>
+    <figure class="photo"><Image src={fachada} alt="Fachada da Brocudos Barbearia, no número 2166" widths={[400, 800]} sizes="(min-width:760px) 520px, 100vw" /></figure>
+  </div></section>
+</Base>

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, waLink } from '../data/site';
+---
+<Base title="Contato e como chegar | Brocudos Barbearia" description="WhatsApp (11) 94529-6092, endereço e horários da Brocudos Barbearia, Av. Cel. Sezefredo Fagundes, 2166, Tremembé, São Paulo." path="/contato">
+  <section><div class="wrap grid two">
+    <div><p class="eyebrow">Contato</p><h1>Fala com a gente</h1>
+      <p>{site.address.street}<br />{site.address.district}, {site.address.city} - {site.address.uf}, {site.address.zip}</p>
+      <table><tr><th>Segunda a sábado</th><td>09:00–20:00</td></tr><tr><th>Domingo</th><td>09:00–13:00</td></tr></table>
+      <p class="note">Em feriados o horário pode mudar.</p></div>
+    <div class="cta" style="flex-direction:column;align-items:stretch">
+      <a class="btn" href={waLink()} rel="noopener noreferrer">WhatsApp {site.phone}</a>
+      <a class="btn btn-ghost" href={`tel:${site.phoneTel}`}>Ligar</a>
+      <a class="btn btn-ghost" href={site.maps} rel="noopener noreferrer">Como chegar (Google Maps)</a>
+      <a class="btn btn-ghost" href={site.instagram} rel="noopener noreferrer">Instagram @brocudosbarbearia</a></div>
+  </div></section>
+</Base>
