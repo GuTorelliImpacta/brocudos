@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import corte from '../assets/corte.jpg';
+import barba from '../assets/barba.jpg';
+import { waLink } from '../data/site';
+---
+<Base title="Serviços: corte degradê e barba | Brocudos Barbearia" description="Corte degradê, barba e combo corte + barba na Brocudos Barbearia, Tremembé, zona norte de São Paulo. Valores pelo WhatsApp." path="/servicos">
+  <section><div class="wrap">
+    <p class="eyebrow">Serviços</p><h1>Corte e barba, do jeito que você pediu</h1>
+    <div class="grid two"><div>
+      <div class="svc"><h2>Corte e degradê</h2><p>Fade, social e texturizado. Leve uma foto de referência que a gente ajusta ao seu cabelo.</p></div><br />
+      <div class="svc"><h2>Barba</h2><p>Aparada, alinhada e desenhada, com acabamento no capricho.</p></div><br />
+      <div class="svc"><h2>Corte + barba</h2><p>Tudo de uma vez, na mesma cadeira.</p></div>
+      <p class="note">Valores, outros serviços e formas de pagamento: confirme no WhatsApp.</p>
+      <div class="cta"><a class="btn" href={waLink('Olá! Quero saber os valores e horários dos serviços.')} rel="noopener noreferrer">Perguntar valores</a></div></div>
+      <div class="grid"><figure class="photo"><Image src={corte} alt="Degradê com topo em textura" widths={[400, 800]} sizes="(min-width:760px) 520px, 100vw" /></figure></div></div>
+  </div></section>
+  <section><div class="wrap"><h2>Dúvidas rápidas</h2>
+    <details><summary>Precisa marcar horário?</summary><p>Chame no WhatsApp para ver os horários livres antes de vir.</p></details>
+    <details><summary>Qual o horário de funcionamento?</summary><p>Segunda a sábado, 09h às 20h. Domingo, 09h às 13h. Em feriados pode mudar.</p></details>
+    <details><summary>Onde fica?</summary><p>Av. Cel. Sezefredo Fagundes, 2166, Tremembé, São Paulo - SP.</p></details>
+  </div></section>
+</Base>

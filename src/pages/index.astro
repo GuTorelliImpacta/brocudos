@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import corte from '../assets/corte.jpg';
+import barba from '../assets/barba.jpg';
+import ambiente from '../assets/ambiente.jpg';
+import { site, waLink } from '../data/site';
+---
+<Base title="Barbearia no Tremembé, São Paulo | Brocudos Barbearia" description="Corte degradê, barba e papo reto na zona norte de SP. Av. Cel. Sezefredo Fagundes, 2166, Tremembé. Aberto todos os dias. Chame no WhatsApp." path="">
+  <section class="hero"><div class="wrap">
+    <span class="status" id="status" data-hours={JSON.stringify(site.hours)}>Seg a sáb 09h–20h · Dom 09h–13h</span>
+    <h1>Corte, barba e papo reto no Tremembé.</h1>
+    <p class="lead">Barbearia na zona norte de São Paulo. Chega, chama no WhatsApp e confirma o horário.</p>
+    <div class="cta">
+      <a class="btn" href={waLink()} rel="noopener noreferrer">Chamar no WhatsApp</a>
+      <a class="btn btn-ghost" href={site.maps} rel="noopener noreferrer">Como chegar</a>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">Serviços</p><h2>O que a gente faz</h2>
+    <div class="grid three">
+      <div class="svc"><h3>Corte e degradê</h3><p>Do social ao fade, na máquina e na tesoura.</p></div>
+      <div class="svc"><h3>Barba</h3><p>Aparada, desenhada e no capricho.</p></div>
+      <div class="svc"><h3>Corte + barba</h3><p>O combo completo numa cadeira só.</p></div>
+    </div>
+    <p class="note">Valores e demais serviços: pergunte no WhatsApp. <a href="/servicos">Ver serviços</a></p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">Trabalho da casa</p><h2>Resultado na cadeira</h2>
+    <div class="grid two">
+      <figure class="photo"><Image src={corte} alt="Degradê com topo em textura, visto de costas" widths={[400, 800]} sizes="(min-width:760px) 520px, 100vw" /></figure>
+      <figure class="photo"><Image src={barba} alt="Barba grisalha aparada em cliente na cadeira" widths={[400, 800]} sizes="(min-width:760px) 520px, 100vw" /></figure>
+    </div>
+  </div></section>
+
+  <section><div class="wrap grid two">
+    <figure class="photo"><Image src={ambiente} alt="Ambiente da barbearia com geladeira de bebidas, fliperama e espelho ao fundo" widths={[400, 800]} sizes="(min-width:760px) 520px, 100vw" /></figure>
+    <div><p class="eyebrow">O ambiente</p><h2>Espera boa também é parte do corte</h2>
+      <p>Espelhos de moldura trabalhada, fliperama e geladeira de bebidas. Aqui ninguém fica olhando o relógio.</p>
+      <p class="note">Bebida alcoólica: venda proibida para menores de 18 anos. Beba com moderação.</p></div>
+  </div></section>
+
+  <section id="onde"><div class="wrap grid two">
+    <div><p class="eyebrow">Onde fica</p><h2>Av. Cel. Sezefredo Fagundes, 2166</h2>
+      <p>Tremembé, São Paulo - SP, 02306-003</p>
+      <table><caption class="note" style="text-align:left">Horário de funcionamento</caption>
+        <tr><th>Segunda a sábado</th><td>09:00–20:00</td></tr><tr><th>Domingo</th><td>09:00–13:00</td></tr></table>
+      <p class="note">Em feriados o horário pode mudar. Confirme no WhatsApp.</p></div>
+    <div class="cta"><a class="btn" href={waLink()} rel="noopener noreferrer">Chamar no WhatsApp</a>
+      <a class="btn btn-ghost" href={site.maps} rel="noopener noreferrer">Abrir no Maps</a>
+      <a class="btn btn-ghost" href={`tel:${site.phoneTel}`}>Ligar {site.phone}</a></div>
+  </div></section>
+  <script is:inline>
+    (function(){var el=document.getElementById('status');if(!el)return;try{var h=JSON.parse(el.dataset.hours);
+    var fmt=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+    var g=function(t){return fmt.find(function(p){return p.type===t}).value};
+    var d=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(g('weekday'));var now=(+g('hour')%24)*60+ +g('minute');
+    var r=h[d],c=function(s){var a=s.split(':');return +a[0]*60+ +a[1]};
+    if(now>=c(r[0])&&now<c(r[1])){el.textContent='Aberto agora · fecha às '+r[1].replace(':00','h')}else{el.classList.add('closed');el.textContent='Fechado agora · hoje '+r[0].replace(':00','h')+'–'+r[1].replace(':00','h')}}catch(e){}})();
+  </script>
+</Base>

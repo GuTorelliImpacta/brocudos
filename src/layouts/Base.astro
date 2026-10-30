@@ -1,0 +1,46 @@
+---
+import '@fontsource/alfa-slab-one/400.css';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/600.css';
+import wordmark from '../assets/wordmark.png';
+import { Image } from 'astro:assets';
+import { site, waLink } from '../data/site';
+import '../styles.css';
+const { title, description, path = '' } = Astro.props;
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const ld = {
+  '@context': 'https://schema.org', '@type': 'BarberShop', name: site.name, url: site.url,
+  telephone: site.phoneTel, image: `${site.url}/og.jpg`, sameAs: [site.instagram],
+  address: { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.city, addressRegion: site.address.uf, postalCode: site.address.zip, addressCountry: 'BR' },
+  openingHoursSpecification: Object.entries(site.hours).map(([d, [o, c]]) => ({ '@type': 'OpeningHoursSpecification', dayOfWeek: days[+d], opens: o, closes: c })),
+};
+const nav = [['/servicos', 'Serviços'], ['/sobre', 'Sobre'], ['/contato', 'Contato']];
+---
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title><meta name="description" content={description} />
+  <link rel="canonical" href={site.url + path} />
+  <meta name="theme-color" content="#121212" />
+  <meta property="og:type" content="website" /><meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content={title} /><meta property="og:description" content={description} />
+  <meta property="og:url" content={site.url + path} /><meta property="og:image" content={site.url + '/og.jpg'} />
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+</head>
+<body>
+  <a class="skip" href="#main">Pular para o conteúdo</a>
+  <header class="top"><div class="wrap bar">
+    <a href="/" class="brand" aria-label="Brocudos Barbearia, início"><Image src={wordmark} alt="Brocudos Barbearia" width={180} height={47} loading="eager" /></a>
+    <nav aria-label="Principal">{nav.map(([h, t]) => <a href={h} aria-current={path === h ? 'page' : undefined}>{t}</a>)}</nav>
+    <a class="btn btn-sm" href={waLink()} rel="noopener noreferrer">WhatsApp</a>
+  </div></header>
+  <main id="main"><slot /></main>
+  <footer><div class="wrap foot">
+    <div><strong>{site.name}</strong><p>{site.address.street}<br />{site.address.district}, {site.address.city} - {site.address.uf}, {site.address.zip}</p></div>
+    <div><p><a href={`tel:${site.phoneTel}`}>{site.phone}</a><br /><a href={site.instagram} rel="noopener noreferrer">@brocudosbarbearia</a></p></div>
+    <p class="fine">Beba com moderação. Venda proibida para menores de 18 anos.</p>
+  </div></footer>
+  <a class="fab" href={waLink()} rel="noopener noreferrer" aria-label="Chamar no WhatsApp">Chamar no WhatsApp</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "brocudos-barbearia",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/alfa-slab-one": "^5.3.0",
+    "@fontsource/barlow": "^5.3.0",
+    "astro": "^7.4.1",
+    "sharp": "^0.35.5"
+  }
+}
